@@ -1,0 +1,50 @@
+﻿@model WebApp.Models.Transacao
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Transacao</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IDContaRemetente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDContaRemetente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IDContaDestino)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDContaDestino)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataHora)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataHora)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Valor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Valor)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
