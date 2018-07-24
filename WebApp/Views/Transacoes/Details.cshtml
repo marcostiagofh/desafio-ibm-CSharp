@@ -1,7 +1,7 @@
 ﻿@model WebApp.Models.Transacao
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalhes da Transação";
 }
 
 <h2>Details</h2>
@@ -45,6 +45,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Visualizar Transações", "Index")
 </p>
