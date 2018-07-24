@@ -12,7 +12,7 @@ namespace WebApp.Controllers
 {
     public class TransacoesController : Controller
     {
-        private TransacaoDBContext db = new TransacaoDBContext();
+        public TransacaoDBContext db = new TransacaoDBContext();
 
         // GET: Transacoes
         public ActionResult Index()
@@ -55,8 +55,8 @@ namespace WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(transacao);
-        }
+            return View(transacao);            
+        } 
 
         // GET: Transacoes/Edit/5
         public ActionResult Edit(int? id)
@@ -122,6 +122,6 @@ namespace WebApp.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
+        }     
     }
 }

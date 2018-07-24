@@ -12,7 +12,7 @@ namespace WebApp.Controllers
 {
     public class ClientesController : Controller
     {
-        private ClienteDBContext db = new ClienteDBContext();
+        public ClienteDBContext db = new ClienteDBContext();
 
         // GET: Clientes
         public ActionResult Index()
@@ -122,6 +122,6 @@ namespace WebApp.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
+        }       
     }
 }
