@@ -7,12 +7,13 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApp.Models;
+using WebApp.DAL;
 
 namespace WebApp.Controllers
 {
     public class TransacoesController : Controller
     {
-        public TransacaoDBContext db = new TransacaoDBContext();
+        public BancoDbContext db = new BancoDbContext();
 
         // GET: Transacoes
         public ActionResult Index()
@@ -49,7 +50,23 @@ namespace WebApp.Controllers
         public ActionResult Create([Bind(Include = "ID,IDContaRemetente,IDContaDestino,DataHora,Valor")] Transacao transacao)
         {
             if (ModelState.IsValid)
-            {
+            {               
+                //Atualiza saldo das contas remetente e destino
+                Cliente cliente = db.Clientes.Find(transacao.IDContaDestino);
+                if (cliente != null)
+                {
+                    decimal saldo = cliente.Saldo;
+                    cliente.Saldo = saldo + transacao.Valor;
+                }
+                db.Entry(cliente).State = EntityState.Modified;
+                cliente = db.Clientes.Find(transacao.IDContaRemetente);
+                if (cliente != null)
+                {
+                    decimal saldo = cliente.Saldo;
+                    cliente.Saldo = saldo - transacao.Valor;
+                }
+                db.Entry(cliente).State = EntityState.Modified;
+
                 db.Transacoes.Add(transacao);
                 db.SaveChanges();
                 return RedirectToAction("Index");

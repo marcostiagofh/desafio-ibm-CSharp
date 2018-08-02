@@ -16,11 +16,8 @@ namespace WebApp.Models
         public string Nome { get; set; }
         public int Idade { get; set; }
         public string Endereço { get; set; }
+        [DisplayName("Saldo (no formato americano)")]
         public decimal Saldo { get; set; }
     }
 
-    public class ClienteDBContext : DbContext
-    {
-        public DbSet<Cliente> Clientes { get; set; }
-    }
 }

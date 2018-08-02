@@ -17,13 +17,10 @@ namespace WebApp.Models
         [DisplayName("ID da Conta Destino")]
         public int IDContaDestino { get; set; }
 
-        [DisplayName("Data e Hora")]
+        [DisplayName("Data e Hora (no formato americano)")]
         public DateTime DataHora { get; set; }
+        [DisplayName("Valor (no formato americano)")]
         public decimal Valor { get; set; }
     }
-
-    public class TransacaoDBContext : DbContext
-    {
-        public DbSet<Transacao> Transacoes { get; set; }
-    }
+    
 }

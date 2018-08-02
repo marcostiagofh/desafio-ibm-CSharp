@@ -7,17 +7,25 @@ using System.Web;
 using System.Web.Mvc;
 using WebApp.Models;
 using System.Data.Entity;
+using WebApp.DAL;
 
 namespace WebApp.Controllers
 {
     public class ClientesController : Controller
     {
-        public ClienteDBContext db = new ClienteDBContext();
+        public BancoDbContext db = new BancoDbContext();
 
         // GET: Clientes
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            return View(db.Clientes.ToList());
+            var clientes = from m in db.Clientes
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                clientes = clientes.Where(s => s.Nome.Contains(searchString));
+            }
+            return View(clientes);
         }
 
         // GET: Clientes/Details/5
@@ -123,5 +131,9 @@ namespace WebApp.Controllers
             }
             base.Dispose(disposing);
         }       
+    }
+
+    public class BancoDBContext
+    {
     }
 }
